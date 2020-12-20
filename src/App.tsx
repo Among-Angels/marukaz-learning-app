@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import TinySegmenter from "tiny-segmenter";
 import "./App.css";
 
 const useInput = (initialValue: string) => {
@@ -15,6 +16,8 @@ function App() {
   const emailProps = useInput("");
   const passwordProps = useInput("");
   const [textareaValue, setTextareaValue] = useState("");
+  const segmenter = new TinySegmenter();
+  const tokenized = segmenter.segment(textareaValue);
 
   return (
     <div className="App">
@@ -28,7 +31,7 @@ function App() {
           }
         />
       </form>
-      <p>{textareaValue}</p>
+      <p>{tokenized.join(" | ")}</p>
     </div>
   );
 }
