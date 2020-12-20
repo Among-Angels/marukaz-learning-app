@@ -1,24 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+
+const useInput = (initialValue: string) => {
+  const [value, set] = useState(initialValue);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    set(event.target.value);
+  };
+
+  return { value, onChange: handleChange };
+};
 
 function App() {
+  const emailProps = useInput("");
+  const passwordProps = useInput("");
+  const [textareaValue, setTextareaValue] = useState("");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <form>
+        <input type="email" {...emailProps} />
+        <input type="password" {...passwordProps} />
+        <textarea
+          value={textareaValue}
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+            setTextareaValue(e.target.value)
+          }
+        />
+      </form>
+      <p>{textareaValue}</p>
     </div>
   );
 }
