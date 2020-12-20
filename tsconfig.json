@@ -14,11 +14,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-    "typeRoots": [
-      "./@types", // 自作の型定義ファイルを配置するディレクトリのパス
-      "./node_modules/@types"
-    ]
+    "jsx": "react-jsx"
   },
   "include": ["src"]
 }

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import TinySegmenter from "tiny-segmenter";
+import React, { useEffect, useState } from "react";
+import { tokenize } from "kuromojin";
 import "./App.css";
 
 const useInput = (initialValue: string) => {
@@ -16,8 +16,20 @@ function App() {
   const emailProps = useInput("");
   const passwordProps = useInput("");
   const [textareaValue, setTextareaValue] = useState("");
-  const segmenter = new TinySegmenter();
-  const tokenized = segmenter.segment(textareaValue);
+  const [tokenized, setTokenized] = useState("");
+
+  useEffect(() => {
+    const timeOutId = setTimeout(
+      () =>
+        tokenize(textareaValue, {
+          dicPath: "/dict",
+        }).then((results) => {
+          setTokenized(results.map((x) => x["surface_form"]).join(" | "));
+        }),
+      700
+    );
+    return () => clearTimeout(timeOutId);
+  }, [textareaValue]);
 
   return (
     <div className="App">
@@ -31,7 +43,7 @@ function App() {
           }
         />
       </form>
-      <p>{tokenized.join(" | ")}</p>
+      <p>{tokenized}</p>
     </div>
   );
 }
