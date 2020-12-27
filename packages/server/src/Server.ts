@@ -27,9 +27,9 @@ if (process.env.NODE_ENV === "development") {
 }
 
 // Security
-if (process.env.NODE_ENV === "production") {
-  app.use(helmet());
-}
+// if (process.env.NODE_ENV === "production") {
+//   app.use(helmet());
+// }
 
 // Add APIs
 app.use("/api", BaseRouter);
@@ -55,9 +55,9 @@ app.use(express.static(staticDir));
 //     res.sendFile('index.html', {root: viewsDir});
 // });
 
-// app.get("/", function (req, res) {
-//   res.sendFile(path.join(__dirname, "../../client/build", "index.html"));
-// });
+app.get("/", function (req, res) {
+  res.sendFile(path.join(__dirname, "../../client/build", "index.html"));
+});
 
 // Export express instance
 export default app;

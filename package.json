@@ -3,5 +3,8 @@
   "private": true,
   "devDependencies": {
     "lerna": "^3.22.1"
+  },
+  "scripts": {
+    "start": "cd packages/server && node -r module-alias/register dist --env=production"
   }
 }
