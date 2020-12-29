@@ -37,7 +37,7 @@ const translate_nouns = (tokenized: KuromojiToken[]) => {
   return translateText();
 };
 
-router.post("/", (req: TranslateRequest, res: Response, next) => {
+router.post("/", (req: TranslateRequest, res: Response) => {
   const { text } = req.body;
   if (!text) {
     return res.status(BAD_REQUEST).json({
@@ -50,7 +50,7 @@ router.post("/", (req: TranslateRequest, res: Response, next) => {
         return res.status(OK).json({ translate: translated });
       })
       .catch((error) => {
-        next(error);
+        console.error(error);
         return res
           .status(BAD_REQUEST)
           .json({ translate: "translate api failed" });
