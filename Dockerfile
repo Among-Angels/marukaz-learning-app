@@ -6,11 +6,12 @@ ENV INLINE_RUNTIME_CHUNK false
 
 RUN curl -sL https://rpm.nodesource.com/setup_14.x | bash -
 RUN yum install -y nodejs
-RUN npm i lerna -g
 
 RUN mkdir /app
 WORKDIR /app
 
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json /app
 RUN npm install --only=prod
 COPY packages/server /app/packages/server
@@ -18,8 +19,6 @@ COPY packages/client /app/packages/client
 
 COPY lerna.json /app
 RUN lerna run build
-
-
 
 EXPOSE 3000
 
