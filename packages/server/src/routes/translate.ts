@@ -45,9 +45,16 @@ router.post("/", async (req: TranslateRequest, res: Response) => {
     });
   }
   tokenize(text).then((results) => {
-    translate_nouns(results).then((translated) => {
-      return res.status(OK).json({ translate: translated });
-    });
+    translate_nouns(results)
+      .then((translated) => {
+        return res.status(OK).json({ translate: translated });
+      })
+      .catch((error) => {
+        console.error(error);
+        return res
+          .status(BAD_REQUEST)
+          .json({ translate: "translate api failed" });
+      });
   });
 });
 
