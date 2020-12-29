@@ -13,11 +13,12 @@ WORKDIR /app
 # add `/app/node_modules/.bin` to $PATH
 ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json /app
-RUN npm install --only=prod
+RUN npm install lerna
 COPY packages/server /app/packages/server
 COPY packages/client /app/packages/client
 
 COPY lerna.json /app
+RUN lerna bootstrap
 RUN lerna run build
 
 EXPOSE 3000
