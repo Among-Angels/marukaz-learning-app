@@ -10,15 +10,16 @@ RUN yum install -y nodejs
 RUN mkdir /app
 WORKDIR /app
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
+
 COPY package.json /app
-RUN npm install lerna
+RUN npm install -g lerna
 COPY packages/server /app/packages/server
 COPY packages/client /app/packages/client
 
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
 COPY lerna.json /app
-RUN lerna bootstrap
+RUN lerna bootstrap --hoist
 RUN lerna run build
 
 EXPOSE 3000
