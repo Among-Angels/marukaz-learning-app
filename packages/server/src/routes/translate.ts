@@ -37,7 +37,7 @@ const translate_nouns = (tokenized: KuromojiToken[]) => {
   return translateText();
 };
 
-router.post("/", async (req: TranslateRequest, res: Response) => {
+router.post("/", (req: TranslateRequest, res: Response) => {
   const { text } = req.body;
   if (!text) {
     return res.status(BAD_REQUEST).json({
