@@ -26,10 +26,10 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
-// Security
-// if (process.env.NODE_ENV === "production") {
-//   app.use(helmet());
-// }
+Security;
+if (process.env.NODE_ENV === "production") {
+  app.use(helmet());
+}
 
 // Add APIs
 app.use("/api", BaseRouter);
