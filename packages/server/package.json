@@ -4,7 +4,7 @@
   "scripts": {
     "build": "ts-node build.ts",
     "lint": "eslint . --ext .ts",
-    "start": "node -r module-alias/register ./dist --env=production",
+    "start": "node ./dist --env=production",
     "start:dev": "nodemon",
     "test": "nodemon --config ./spec/nodemon.json"
   },
@@ -17,12 +17,6 @@
       "src/public"
     ],
     "exec": "ts-node -r tsconfig-paths/register ./src"
-  },
-  "_moduleAliases": {
-    "@daos": "dist/daos",
-    "@entities": "dist/entities",
-    "@shared": "dist/shared",
-    "@server": "dist/Server"
   },
   "eslintConfig": {
     "parser": "@typescript-eslint/parser",
@@ -70,7 +64,6 @@
     "jet-logger": "^1.0.4",
     "jsonfile": "^6.1.0",
     "kuromojin": "^2.1.1",
-    "module-alias": "^2.2.2",
     "morgan": "^1.10.0",
     "typescript": "^4.1.3"
   },

@@ -3,7 +3,7 @@ import { Request, Response, Router } from "express";
 import { KuromojiToken, tokenize } from "kuromojin";
 import { v2 } from "@google-cloud/translate";
 
-import { paramMissingError, TranslateRequest } from "@shared/constants";
+import { paramMissingError, TranslateRequest } from "../shared/constants";
 
 const apiKey = process.env.GOOGLE_TRANSLATE_APIKEY;
 
