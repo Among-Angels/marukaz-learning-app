@@ -1,11 +1,8 @@
-FROM registry.access.redhat.com/ubi8/ubi
+FROM node:14 AS build
 
 ENV NODE_ENV production
 ENV PORT 3000
 ENV INLINE_RUNTIME_CHUNK false
-
-RUN curl -sL https://rpm.nodesource.com/setup_14.x | bash -
-RUN yum install -y nodejs
 
 RUN mkdir /app
 WORKDIR /app
@@ -21,6 +18,17 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY lerna.json /app
 RUN lerna bootstrap --hoist
 RUN lerna run build
+
+FROM node:14-slim
+
+WORKDIR /app
+COPY package.json /app
+COPY --from=build /app/packages/server/dist /app/packages/server/dist
+COPY --from=build /app/packages/server/package.json /app/packages/server/
+RUN cd /app/packages/server && npm install --production
+COPY --from=build /app/packages/client/build /app/packages/client/build
+COPY --from=build /app/packages/client/package.json /app/packages/client/
+RUN cd /app/packages/client && npm install --production
 
 EXPOSE 3000
 

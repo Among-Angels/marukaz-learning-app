@@ -1,0 +1,14 @@
+{
+	"id": "ApiKey-12389af1-4857-4a2c-851e-1d21d9e2838b",
+	"crn": "crn:v1:bluemix:public:iam-identity::a/1cd9070193254cd99e926acee485a997F::apikey:ApiKey-12389af1-4857-4a2c-851e-1d21d9e2838b",
+	"iam_id": "IBMid-55000A8VEK",
+	"account_id": "1cd9070193254cd99e926acee485a997",
+	"name": "kopamaru-cr",
+	"description": "for container registry access",
+	"apikey": "YMVv5B2vBpWkArXpwoUvntcgENECl4DaDRi8fnqTOAsA",
+	"locked": false,
+	"entity_tag": "1-fca6d00f675b87312574d48fb66ef00c",
+	"created_at": "2020-12-30T09:51+0000",
+	"created_by": "IBMid-55000A8VEK",
+	"modified_at": "2020-12-30T09:51+0000"
+}
