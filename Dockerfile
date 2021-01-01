@@ -4,9 +4,7 @@ ENV NODE_ENV production
 ENV PORT 3000
 ENV INLINE_RUNTIME_CHUNK false
 
-RUN mkdir /app
 WORKDIR /app
-
 
 COPY package.json /app
 RUN npm install -g lerna
