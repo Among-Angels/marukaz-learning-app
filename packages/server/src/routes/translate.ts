@@ -4,6 +4,7 @@ import { KuromojiToken, tokenize } from "kuromojin";
 import { v2 } from "@google-cloud/translate";
 
 import { paramMissingError, TranslateRequest } from "../shared/constants";
+import { Token } from "../../../shared";
 
 const apiKey = process.env.GOOGLE_TRANSLATE_APIKEY;
 
@@ -25,14 +26,15 @@ const translate_nouns = (tokenized: KuromojiToken[]) => {
     // multiple texts.
     const translations = await translate.translate(nouns, "en");
     const translatedWords: string[] = translations[0];
-    const results = tokenized.map((x) => {
+    const results: Token[] = tokenized.map((x) => {
       if (x.pos === "名詞") {
-        return translatedWords.shift()?.toLowerCase() + " ";
+        const word = (translatedWords.shift() ?? "").toLowerCase();
+        return { word: word, translated: true };
       } else {
-        return x.surface_form;
+        return { word: x.surface_form, translated: false };
       }
     });
-    return results.join("");
+    return results;
   }
   return translateText();
 };
