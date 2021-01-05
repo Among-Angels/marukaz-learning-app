@@ -49,14 +49,14 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 
 // const viewsDir = path.join(__dirname, 'views');
 // app.set('views', viewsDir);
-const staticDir = path.join(__dirname, "../../client/build");
+const staticDir = path.join(__dirname, "../../front");
 app.use(express.static(staticDir));
 // app.get('*', (req: Request, res: Response) => {
 //     res.sendFile('index.html', {root: viewsDir});
 // });
 
 app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "../../client/build", "index.html"));
+  res.sendFile(path.join(__dirname, "../../front", "index.html"));
 });
 
 // Export express instance
