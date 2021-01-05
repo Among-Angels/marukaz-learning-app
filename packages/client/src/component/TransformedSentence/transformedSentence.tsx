@@ -1,3 +1,5 @@
+import fancify from "fancify";
+
 import { Token } from "../../../../shared";
 
 type TransformedSentenseProps = {
@@ -6,8 +8,15 @@ type TransformedSentenseProps = {
 
 export const TransformedSentense = (props: TransformedSentenseProps) => {
   const TokensJoinReducer = (sentence: string, currToken: Token) => {
-    if (currToken.translated && !sentence.endsWith(" ")) {
-      sentence = sentence + " " + currToken.word + " ";
+    if (currToken.translated) {
+      const word = fancify({
+        input: currToken.word,
+        set: "math sans bold italic",
+      });
+      if (!sentence.endsWith(" ")) {
+        sentence += " ";
+      }
+      sentence = sentence + word + " ";
     } else {
       sentence += currToken.word;
     }
