@@ -10,6 +10,8 @@ node_modules
 
 # production
 build
+dist
+front
 
 # misc
 .DS_Store
