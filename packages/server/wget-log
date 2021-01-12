@@ -1,0 +1,11 @@
+--2021-01-11 17:09:29--  http://ghtorrent-downloads.ewi.tudelft.nl/mongo-daily/mongo-dump-2021-01-01.tar.gz
+ghtorrent-downloads.ewi.tudelft.nl (ghtorrent-downloads.ewi.tudelft.nl) をDNSに問いあわせています... 131.180.125.37
+ghtorrent-downloads.ewi.tudelft.nl (ghtorrent-downloads.ewi.tudelft.nl)|131.180.125.37|:80 に接続しています... 接続しました。
+HTTP による接続要求を送信しました、応答を待っています... 200 OK
+長さ: 12092948194 (11G) [application/octet-stream]
+`STDOUT' に保存中
+
+-                              13%[=====>                                            ]   1.53G  3.12MB/s    in 7m 47s  
+
+
+`-' へ書き込めません(Broken pipe)。
